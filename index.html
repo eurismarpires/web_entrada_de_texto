@@ -3,9 +3,19 @@
 <head lang="pt-br">
     <meta charset="UTF-8">
     <title>Entrada de Texto</title>
+    <script>
+        function mensagem(){
+            var busca = document.getElementById("txtBusca");
+            var texto = busca.innerHTML;
+            var test = document.getElementById("teste");
+            test.innerHTML = texto;
+        }
+
+    </script>
 </head>
 <body>
     <h3>Busca com Entrada de Texto</h3>
-    <textarea rows="5" cols="40" placeholder="Digite o nome a ser localizado"></textarea>
+    <textarea id="txtBusca" rows="5" cols="40" placeholder="Digite o nome a ser localizado" onkeypress="mensagem()"></textarea>
+    <h1 id="teste">meu texto</h1>
 </body>
 </html>
