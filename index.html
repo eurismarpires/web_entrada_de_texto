@@ -6,16 +6,35 @@
     <script>
         function mensagem(){
             var busca = document.getElementById("txtBusca");
-            var texto = busca.innerHTML;
-            var test = document.getElementById("teste");
-            test.innerHTML = texto;
+			
+			
+            var texto = busca.value;
+            document.getElementById("teste").innerHTML=texto;
+
         }
 
+		
+var botado = false;
+function botar() {
+p = document.getElementById('lista');
+var li = document.createElement('li');
+li.innerHTML = 'tres';
+li.setAttribute('id', 'meuId');
+p.appendChild(li);
+}
+function tirar() {
+i = document.getElementById('meuId');
+alert('Conteudo: '+i.innerHTML);
+document.getElementById('lista').removeChild(i);
+}	
+		
+		
     </script>
 </head>
 <body>
     <h3>Busca com Entrada de Texto</h3>
-    <textarea id="txtBusca" rows="5" cols="40" placeholder="Digite o nome a ser localizado" onkeypress="mensagem()"></textarea>
-    <h1 id="teste">meu texto</h1>
+    <textarea id="txtBusca" rows="5" cols="40" placeholder="Digite o nome a ser localizado" onkeyup="mensagem()"></textarea>
+    <h1 id="teste"></h1>
+    <hr>
 </body>
 </html>
