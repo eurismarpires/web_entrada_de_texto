@@ -19,12 +19,14 @@ window.onload = function(){
           p.push(txt);            
           var divEstados = document.getElementById("lista_de_estados"); 
           if(event.keyCode == 38){ //seta p/ cima
+            tecla_control_ativa = false;
             if(itemSelecionado != divEstados.firstElementChild){
               itemSelecionado = itemSelecionado.previousSibling;
                 posicionar(divEstados);
               }
             }else
             if(event.keyCode == 40){ //seta para baixo
+              tecla_control_ativa = false;
               if(itemSelecionado != divEstados.lastElementChild){
                  //criarParagrafo("seta para baixo" + itemSelecionado.innerHTML);
                 itemSelecionado = itemSelecionado.nextSibling;
@@ -51,11 +53,16 @@ window.onload = function(){
           }
      }
   }   
+  
+  
   document.getElementById("txtBusca").onkeyup = function(){
     if(tecla_control_ativa == true){
       listar();
     }
-  }  
+  } 
+  
+
+
 }
 
 function posicionar(divEstados){
@@ -72,6 +79,27 @@ function selecionarItem(obj){
   var busca = document.getElementById("txtBusca");
   busca.value = obj.innerHTML;
   limparLista();
+  
+  
+  
+  /*
+            
+              var txtEstado = document.getElementById("txtBusca").value;
+              var posFin = txtEstado.lastIndexOf(" ") + 1;
+              txtEstado = txtEstado.substr(0,posFin);
+             
+             
+              document.getElementById("txtBusca").value =txtEstado + obj.innerHTML;
+              
+              
+              
+              limparLista();
+                
+  */
+  
+  
+  
+  
 }
 function mouseEntrar(obj){
   obj.className = "atual";
@@ -170,12 +198,3 @@ function Pilha(){
     return this.vetor[this.ponteiro];
   }
 }
-
-
-  
-
-
-
-
-
- 
