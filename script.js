@@ -14,6 +14,7 @@ window.onload = function(){
     }else if(event.keyCode == 27){ //tecla Esc
       limparLista();
       teclou_control = false;
+      tecla_control_ativa = false;
     }else{
           var txt = document.getElementById("txtBusca").value;
           p.push(txt);            
