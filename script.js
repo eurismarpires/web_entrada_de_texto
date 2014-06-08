@@ -15,6 +15,10 @@ window.onload = function(){
       limparLista();
       teclou_control = false;
       tecla_control_ativa = false;
+     
+    }else if(event.keyCode == 9){
+      navegarPeloTab();
+      return false;
     }else{
           var txt = document.getElementById("txtBusca").value;
           p.push(txt);            
@@ -80,27 +84,6 @@ function selecionarItem(obj){
   var busca = document.getElementById("txtBusca");
   busca.value = obj.innerHTML;
   limparLista();
-  
-  
-  
-  /*
-            
-              var txtEstado = document.getElementById("txtBusca").value;
-              var posFin = txtEstado.lastIndexOf(" ") + 1;
-              txtEstado = txtEstado.substr(0,posFin);
-             
-             
-              document.getElementById("txtBusca").value =txtEstado + obj.innerHTML;
-              
-              
-              
-              limparLista();
-                
-  */
-  
-  
-  
-  
 }
 function mouseEntrar(obj){
   obj.className = "atual";
@@ -168,6 +151,21 @@ function limparLista(){
     if(elem !== null){
       document.body.removeChild(elem);
     }  
+}
+function navegarPeloTab () {     
+      var busca = document.getElementById("txtBusca"); 
+      var posicao_cursor = busca.selectionStart;
+      var texto = busca.value;
+      var x = texto.indexOf(" ",posicao_cursor+1) + 1;
+      var y = texto.indexOf(" ",x);
+      console.log(x + ":" + y);
+      busca.focus();
+     /* if(y == -1)
+        busca.setSelectionRange(x,texto.length);        
+      else
+        busca.setSelectionRange(x,y);  
+	  */		
+	  busca.setSelectionRange(x,x);   
 }
 
 function Pilha(){
