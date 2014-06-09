@@ -39,18 +39,21 @@ window.onload = function(){
               }
             }else
             if(event.keyCode == 13){
+              
               tecla_control_ativa = false;
               var txtEstado = document.getElementById("txtBusca").value;
-              var posFin = txtEstado.lastIndexOf(" ") + 1;
-              txtEstado = txtEstado.substr(0,posFin);
-             
-             
-              document.getElementById("txtBusca").value =txtEstado + itemSelecionado.innerHTML;
-              
-              
-              
-              limparLista();
+              if(txtEstado.indexOf("#") == -1){
+                var posFin = txtEstado.lastIndexOf(" ") + 1;
+                txtEstado = txtEstado.substr(0,posFin);
+                if (typeof(itemSelecionado) != "undefined")
+                document.getElementById("txtBusca").value =txtEstado + itemSelecionado.innerHTML;
+                limparLista();
+              }
+              else{ 
+                verificarAtalho();  
+              }
               return false;
+              
           }else{
             // listar();
             // tecla_control_ativa = false;
@@ -167,7 +170,34 @@ function navegarPeloTab () {
 	  */		
 	  busca.setSelectionRange(x,x);   
 }
-
+function verificarAtalho(){
+ 
+ var busca = document.getElementById("txtBusca"); 
+              var str = busca.value;
+              
+              var pos_atalho = str.indexOf("#");
+              
+              var aux = pos_atalho;
+              
+              while(aux !== -1){
+                aux = str.indexOf("#",pos_atalho+1);
+                if(aux != -1){
+                  pos_atalho = aux;
+                }
+              }
+              
+              var posicao_cursor = busca.selectionStart;
+              var atalho = str.substr(pos_atalho,posicao_cursor);
+              
+              
+              if(atalho !== null){
+                var s = listaAtalhos[atalho];
+                if (typeof(s) != "undefined"){
+                  var textoNovo = str.replace(atalho,listaAtalhos[atalho]);
+                  document.getElementById("txtBusca").value = textoNovo;
+                }
+              }  
+}
 function Pilha(){
   this.vetor = new Array();
   this.ponteiro = 1;
